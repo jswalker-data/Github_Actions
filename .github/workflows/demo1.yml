@@ -1,11 +1,15 @@
-name: Deployment Workflow
-on: [push, workflow_dispatch]
+name: Events Demo 1
+on:
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
 jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
             - name: Output Event Data
-              uses: echo "${{ toJson(github.event) }}"
+              run: echo "${{ toJson(github.event) }}"
             - name: Get Code
               uses: actions/checkout@v3
             - name: Install Dependencies
